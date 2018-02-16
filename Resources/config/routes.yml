@@ -1,31 +1,7 @@
 ajax:
     path:     /ajax/{subject}
-    defaults: { _controller: inidate\Controller\HomeController::ajaxAction }
+    defaults: { _controller: silabos\Controller\HomeController::ajaxAction }
     methods:  [POST]
 index:
     path:     /
-    defaults: { _controller: inidate\Controller\HomeController::indexAction }
-inidate_edit:
-    path:     /edit/{inidateid}
-    defaults: { _controller: inidate\Controller\HomeController::editAction , inidateid: 0}
-    methods:  [GET]
-inidate_save:
-    path:     /edit/{inidateid}
-    defaults: { _controller: inidate\Controller\HomeController::editAction }
-    methods:  [POST]
-group_list:
-    path:     /group/{courseid}
-    defaults: { _controller: inidate\Controller\HomeController::groupsAction }
-    methods:  [GET]
-group_edit:
-    path:     /modificar/{groupid}/{inidateid}
-    defaults: { _controller: inidate\Controller\HomeController::groupAction, groupid: 0, inidateid: 0 }
-    methods:  [GET]
-role_list:
-    path:     /rol/{courseid}
-    defaults: { _controller: inidate\Controller\HomeController::roleAction, courseid: 0 }
-    methods:  [GET]
-role_save:
-    path:     /role/save
-    defaults: { _controller: inidate\Controller\HomeController::rolesaveAction }
-    methods:  [POST]   
+    defaults: { _controller: silabos\Controller\HomeController::indexAction }

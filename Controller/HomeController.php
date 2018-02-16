@@ -20,6 +20,7 @@ namespace silabos\Controller;
 use silabos\Service\HomeService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use core\output\notification;
 
 class HomeController extends HomeService {
 
@@ -39,8 +40,22 @@ class HomeController extends HomeService {
         $this->params['courses'] = $courses;
         return $this->template('Home')->renderResponse('index.html.twig', $this->params);
     }
-    
-    public function filesAction(Request $request){
-        
+
+    /**
+     * Método para listar los archivos de tipo sílabo subido por curso
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function filesAction(Request $request) {
+        $silaboid = $request->attributes->get('silaboId');
+        if ($silaboid == 0) {
+            redirect($this->routes()->generate('index'), 'Falta el ID del registro', 2, notification::NOTIFY_ERROR);
+        }
+        $files = $this->getFilesBySilaboId($silaboid);
+        $objSilabo = $this->getSilaboById($silaboid);
+        $this->params['files'] = $files;
+        $this->params['objSilabo'] = $objSilabo;
+        return $this->template('Home')->renderResponse('files.html.twig', $this->params);
     }
+
 }

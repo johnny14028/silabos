@@ -1,0 +1,28 @@
+<table class="table" id="tableSilabosCourses">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Curso nombre corto</th>
+            <th>Curso nombre completo</th>
+            <th>Activo</th>
+            <th>Fecha registro</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if items|length > 0 %}
+            {% set cont = 0 %}
+            {% for item in items %}
+                <tr>
+                    <td>{{cont + 1}}</td>
+                    <td>{{item.chr_course_shortname}}</td>
+                    <td>{{item.chr_course_fullname}}</td>
+                    <td>{{item.is_active?home.getString('silabos:enabled'):home.getString('silabos:disabled')}}</td>
+                    <td>{{item.date_timemodified >0?item.date_timemodified|date("d/m/Y"):home.getString('silabos:noAplica')}}</td>
+                    <td><a href="{{home.getSilabosUriFiles(item.id)}}">{{home.getString('silabos:files')}}</a></td>
+                </tr>
+                {% set cont = cont +1 %}
+            {%endfor%}
+        {%endif%}                    
+    </tbody>
+</table>

@@ -7,5 +7,5 @@ index:
     defaults: { _controller: silabos\Controller\HomeController::indexAction }
 silabos_files:
     path:     /archivos/{silaboId}
-    defaults: { _controller: inidate\Controller\HomeController::filesAction , silaboId: 0}
+    defaults: { _controller: silabos\Controller\HomeController::filesAction , silaboId: 0}
     methods:  [GET]    

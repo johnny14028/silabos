@@ -40,9 +40,32 @@ class HomeService extends Template {
     public function getCourses() {
         return HomeModel::getCourses();
     }
-    
-    public function getSilabosUriFiles($silaboId){
+
+    /**
+     * Método para obtener la URI del indice del router
+     * @param int $silaboId
+     * @return string
+     */
+    public function getSilabosUriFiles($silaboId) {
         return $this->routes()->generate('silabos_files', ['silaboId' => $silaboId]);
+    }
+
+    /**
+     * Método para listar todos los archivo adjuntos a este registro de curso
+     * @param int $silaboid
+     * @return arrayObject
+     */
+    public function getFilesBySilaboId($silaboid) {
+        return HomeModel::getFilesBySilaboId($silaboid);
+    }
+
+    /**
+     * Método para obtener el registro del silabo
+     * @param int $id
+     * @return object
+     */
+    public function getSilaboById($id) {
+        return HomeModel::getSilaboById($id);
     }
 
 }

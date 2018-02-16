@@ -10,6 +10,7 @@ $string['silabos:enabled'] = 'Activo';
 $string['silabos:disabled'] = 'Deshabilitado';
 $string['silabos:noAplica'] = 'No aplica';
 $string['silabos:files'] = 'Archivos';
+$string['silabos:listFiles'] = 'Lista de archivos';
 //Variables del datatable
 $string['local_silabos_datatable_first']      = 'Primero';
 $string['local_silabos_datatable_last']      = 'Último';

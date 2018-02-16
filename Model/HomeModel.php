@@ -38,4 +38,14 @@ class HomeModel {
         return $DB->get_records('local_silabos', ['is_deleted' => '0']);
     }
 
+    public static function getSilaboById($id) {
+        global $DB;
+        return $DB->get_record('local_silabos', ['id' => $id]);
+    }
+    
+    public static function getFilesBySilaboId() {
+        global $DB;
+        return $DB->get_records('local_silabos_file');
+    }    
+
 }

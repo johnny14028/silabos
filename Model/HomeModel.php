@@ -28,4 +28,14 @@ namespace silabos\Model;
  */
 class HomeModel {
 
+    /**
+     * Metodo para obtener de la BD los registos de la tabla sílabos
+     * @global object $DB
+     * @return arrayObject
+     */
+    public static function getCourses() {
+        global $DB;
+        return $DB->get_records('local_silabos', ['is_deleted' => '0']);
+    }
+
 }

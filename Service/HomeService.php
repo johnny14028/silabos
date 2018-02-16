@@ -24,4 +24,25 @@ use stdClass;
 
 class HomeService extends Template {
 
+    /**
+     * Metodo para obtener la traducción de la variable $strLan
+     * @param string $strLan
+     * @return string
+     */
+    public function getString($strLan) {
+        return get_string($strLan, 'local_silabos');
+    }
+
+    /**
+     * Método para listar los cursos que están registrados en la tabla de los sílabos
+     * @return arrayObject
+     */
+    public function getCourses() {
+        return HomeModel::getCourses();
+    }
+    
+    public function getSilabosUriFiles($silaboId){
+        return $this->routes()->generate('silabos_files', ['silaboId' => $silaboId]);
+    }
+
 }

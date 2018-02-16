@@ -30,11 +30,17 @@ class HomeController extends HomeService {
     }
 
     /**
-     * Vista Home.
+     * Vista para listar los registros de la tabla sílabos
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction() {        
+    public function indexAction() {
+        $courses = $this->getCourses();
+        $this->params['courses'] = $courses;
         return $this->template('Home')->renderResponse('index.html.twig', $this->params);
+    }
+    
+    public function filesAction(Request $request){
+        
     }
 }

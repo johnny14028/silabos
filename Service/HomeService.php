@@ -105,9 +105,13 @@ class HomeService extends Template {
      * @param int $fileid
      */
     public function getUriFile($fileid) {
+        $returnValue = '#';
         $context = context_system::instance();
         $record = HomeModel::getMoodleFileById($fileid);
-        return moodle_url::make_pluginfile_url($context->id, $record->component, $record->filearea, $record->itemid, $record->filepath, $record->filename)->out(false);
+        if(is_object($record)){
+            $returnValue = moodle_url::make_pluginfile_url($context->id, $record->component, $record->filearea, $record->itemid, $record->filepath, $record->filename)->out(false);
+        }
+        return $returnValue;
     }
     
     public function getMoodleFileById($fileid){

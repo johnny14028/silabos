@@ -109,6 +109,12 @@ class HomeModel {
     public static function getMoodleFileById($fileid){
         global $DB;
         return $DB->get_record('files',['id'=>$fileid]);
-    }    
+    }
+    
+    public static function disableSilabos($silaboid){
+        global $DB;
+        $sql_update = "UPDATE {local_silabos_file} SET is_active=? WHERE int_silaboid = ?";
+        $DB->execute($sql_update,[0,$silaboid]);
+    }
 
 }

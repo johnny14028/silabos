@@ -15,6 +15,7 @@ $string['silabos:newFile'] = 'Agregar nuevo archivo';
 $string['silabos:editfiles'] = 'Editar';
 $string['silabos:back'] = 'Volver';
 $string['silabos:submit'] = 'Guardar';
+$string['silabos:view'] = 'Ver';
 //Variables del datatable
 $string['local_silabos_datatable_first']      = 'Primero';
 $string['local_silabos_datatable_last']      = 'Último';

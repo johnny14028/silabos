@@ -107,7 +107,6 @@ class HomeService extends Template {
     public function getUriFile($fileid) {
         $context = context_system::instance();
         $record = HomeModel::getMoodleFileById($fileid);
-        error_log(print_r($fileid,true));
         return moodle_url::make_pluginfile_url($context->id, $record->component, $record->filearea, $record->itemid, $record->filepath, $record->filename)->out(false);
     }
     
@@ -180,6 +179,10 @@ class HomeService extends Template {
 
     public function createSilaboFile($objBeanSilaboFile) {
         return HomeModel::createSilaboFile($objBeanSilaboFile);
+    }
+    
+    public function disableSilabosBySilaboId($silaboid){
+        HomeModel::disableSilabos($silaboid);
     }
 
 }

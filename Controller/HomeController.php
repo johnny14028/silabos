@@ -92,6 +92,12 @@ class HomeController extends HomeService {
         $message = '';
         $fileid = 0;
         if ($post['id'] > 0) {
+            //verificamos si es una habilitación
+            if($post['inputIsActive']){
+                //desactivamos todos los archivos con respecto al curso
+                //para garintizar que solo exista un sílabo activo por curso
+                $this->disableSilabosBySilaboId($post['silaboid']);
+            }
             //actualizar el registro file
             $objBeanSilaboFile = new \stdClass();
             $objBeanSilaboFile->id = $post['id'];

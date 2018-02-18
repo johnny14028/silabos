@@ -36,6 +36,8 @@
                             <a href="{{home.getSilabosUriFiles(item.id)}}">{{home.getString('silabos:files')}}</a>
                         {%else%}
                             <a href="{{home.getSilabosUriFormFiles(item.int_silaboid, item.id)}}">{{home.getString('silabos:editfiles')}}</a>
+                            |
+                            <a href="{{home.getUriFile(item.int_fileid)}}">{{home.getString('silabos:view')}}</a>
                         {%endif%}
                     </td>
                 </tr>

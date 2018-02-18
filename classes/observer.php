@@ -24,8 +24,6 @@
  */
 defined('MOODLE_INTERNAL') || die();
 
-
-
 /**
  * Event observers supported by this module
  *
@@ -37,19 +35,24 @@ class local_silabos_observer {
 
     public static function course_deleted(\core\event\course_deleted $event) {
         global $DB;
+        $sql_update_to_delete = "UPDATE {local_silabos} SET is_deleted='1' WHERE int_courseid=" . $event->courseid;
+        $DB->execute($sql_update_to_delete);
     }
 
     public static function course_created(\core\event\course_created $event) {
         global $DB, $USER;
-    }
-
-    /**
-     * Observer for the event course_viewed - update silabos categoryname.
-     *
-     * @param \core\event\course_viewed $event
-     */
-    public static function course_viewed(\core\event\course_viewed $event) {
-        global $DB, $COURSE;
+        $course = get_course($event->courseid);
+        $objBeanSilabo = new stdClass();
+        $objBeanSilabo->int_courseid = $course->id;
+        $objBeanSilabo->chr_course_shortname = $course->shortname;
+        $objBeanSilabo->chr_course_fullname = $course->fullname;
+        $objBeanSilabo->int_groupid = 0;
+        $objBeanSilabo->chr_group_name = '';
+        $objBeanSilabo->is_active = 0;
+        $objBeanSilabo->is_deleted = 0;
+        $objBeanSilabo->date_timecreated = time();
+        $objBeanSilabo->date_timemodified = time();
+        $DB->insert_record('local_silabos', $objBeanSilabo);
     }
 
 }

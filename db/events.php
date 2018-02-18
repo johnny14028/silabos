@@ -27,16 +27,8 @@ defined('MOODLE_INTERNAL') || die();
 
 // List of observers.
 $observers = [
-        ['eventname' => '\core\event\course_viewed',
-        'callback' => 'local_silabos_observer::course_viewed',],
-
-        ['eventname' => '\core\event\course_created',
+    ['eventname' => '\core\event\course_created',
         'callback' => 'local_silabos_observer::course_created',],
-
-        ['eventname' => '\core\event\course_deleted',
-        'callback' => 'local_silabos_observer::course_deleted',],
-
-        ['eventname' => '\core\event\course_section_created',
-        'callback' => 'local_silabos_observer::course_section_created',]
-
-        ];
+    ['eventname' => '\core\event\course_deleted',
+        'callback' => 'local_silabos_observer::course_deleted',]
+];

@@ -19,6 +19,7 @@ namespace silabos\Service;
 
 use silabos\Core\Template;
 use silabos\Model\HomeModel;
+use context_system;
 use moodle_url;
 use stdClass;
 
@@ -90,9 +91,28 @@ class HomeService extends Template {
     public function getSilabosFormSubmitUri() {
         return $this->routes()->generate('silabos_files_save');
     }
-    
-    public function getIndexUri(){
+
+    /**
+     * Obtenemos la URL del index del plugin sílabo
+     * @return string
+     */
+    public function getIndexUri() {
         return $this->routes()->generate('index');
+    }
+
+    /**
+     * Obtenemos la URL del archivo sílabo
+     * @param int $fileid
+     */
+    public function getUriFile($fileid) {
+        $context = context_system::instance();
+        $record = HomeModel::getMoodleFileById($fileid);
+        error_log(print_r($fileid,true));
+        return moodle_url::make_pluginfile_url($context->id, $record->component, $record->filearea, $record->itemid, $record->filepath, $record->filename)->out(false);
+    }
+    
+    public function getMoodleFileById($fileid){
+        return HomeModel::getMoodleFileById($fileid);
     }
 
     /**

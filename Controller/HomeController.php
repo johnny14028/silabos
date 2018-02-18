@@ -73,9 +73,15 @@ class HomeController extends HomeService {
         }
         $objSilabo = $this->getSilaboById($silaboid);
         $objFile = $this->getFileSilaboById($fileid);
+        $exist_file = 0;
+        $record = $this->getMoodleFileById($objFile->int_fileid);
+        if(is_object($record)){
+            $exist_file = 1;
+        }
         $objFile->int_silaboid = $silaboid;
         $this->params['objFile'] = $objFile;
         $this->params['objSilabo'] = $objSilabo;
+        $this->params['exist_file'] = $exist_file;
         return $this->template('Home')->renderResponse('form.html.twig', $this->params);
     }
 

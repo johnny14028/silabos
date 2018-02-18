@@ -104,6 +104,11 @@ class HomeModel {
     public static function createSilaboFile($objBeanSilaboFile) {
         global $DB;
         return $DB->insert_record('local_silabos_file', $objBeanSilaboFile);
+    }
+
+    public static function getMoodleFileById($fileid){
+        global $DB;
+        return $DB->get_record('files',['id'=>$fileid]);
     }    
 
 }

@@ -20,8 +20,24 @@
         <label for="inputFile">Subir archivo sílabo</label>
         <input type="file" class="form-control-file" id="inputFile" name="inputFile" accept="application/pdf">
         <small id="inputNameHelp" class="form-text text-muted">Formato PDF</small>
+        {%if objFile.int_fileid > 0%}
+            {%if exist_file == 1%}
+                <a href="{{home.getUriFile(objFile.int_fileid)}}">{{objFile.chr_file_name}}</a>
+            {%endif%}
+        {%endif%}
+
     </div>
     <input type="hidden" id="id" name="id" value="{{objFile.id}}">
     <input type="hidden" id="silaboid" name="silaboid" value="{{objSilabo.id}}">
-    <button type="submit" class="btn btn-primary">Guardar</button>
+    <div class="form-row">
+        <div class="col-md-2">
+            <a class="btn btn-primary" href="{{home.getSilabosUriFiles(objSilabo.id)}}" role="button">{{ home.getString('silabos:back') }}</a>
+        </div>
+        <div class="col-md-8">
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary">{{ home.getString('silabos:submit') }}</button>
+        </div>
+    </div>    
+    
 </form>

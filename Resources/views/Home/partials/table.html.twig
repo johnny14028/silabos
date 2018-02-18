@@ -15,11 +15,29 @@
             {% for item in items %}
                 <tr>
                     <td>{{cont + 1}}</td>
-                    <td>{{item.chr_course_shortname}}</td>
-                    <td>{{item.chr_course_fullname}}</td>
+                    <td>
+                        {%if type == 'course'%}
+                            {{item.chr_course_shortname}}
+                        {%else%}
+                            {{item.chr_name}}
+                        {%endif%}
+                    </td>
+                    <td>
+                        {%if type == 'course'%}
+                            {{item.chr_course_fullname}}
+                        {%else%}
+                            {{item.chr_file_name}}
+                        {%endif%}
+                    </td>
                     <td>{{item.is_active?home.getString('silabos:enabled'):home.getString('silabos:disabled')}}</td>
                     <td>{{item.date_timemodified >0?item.date_timemodified|date("d/m/Y"):home.getString('silabos:noAplica')}}</td>
-                    <td><a href="{{home.getSilabosUriFiles(item.id)}}">{{home.getString('silabos:files')}}</a></td>
+                    <td>
+                        {%if type == 'course'%}
+                            <a href="{{home.getSilabosUriFiles(item.id)}}">{{home.getString('silabos:files')}}</a>
+                        {%else%}
+                            <a href="{{home.getSilabosUriFormFiles(item.int_silaboid, item.id)}}">{{home.getString('silabos:editfiles')}}</a>
+                        {%endif%}
+                    </td>
                 </tr>
                 {% set cont = cont +1 %}
             {%endfor%}

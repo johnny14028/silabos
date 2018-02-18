@@ -38,14 +38,72 @@ class HomeModel {
         return $DB->get_records('local_silabos', ['is_deleted' => '0']);
     }
 
+    /**
+     * Metodo para retornar el objeto de registor de silabo
+     * @global object $DB
+     * @param int $id
+     * @return object
+     */
     public static function getSilaboById($id) {
         global $DB;
         return $DB->get_record('local_silabos', ['id' => $id]);
     }
-    
+
+    /**
+     * Busca el registro de archivo en la tabla de archivos de sílabos
+     * @global object $DB
+     * @param int $id
+     * @return object
+     */
+    public static function getFileSilaboById($id) {
+        global $DB, $USER;
+        $returnValue = NULL;
+        if ($id > 0) {
+            $returnValue = $DB->get_record('local_silabos_file', ['id' => $id]);
+        } else {
+            $objSilaboFile = new \stdClass();
+            $objSilaboFile->id = 0;
+            $objSilaboFile->int_silaboid = 0;
+            $objSilaboFile->is_active = 1;
+            $objSilaboFile->int_fileid = 0;
+            $objSilaboFile->date_timecreated = time();
+            $objSilaboFile->date_timemodified = time();
+            $objSilaboFile->int_creatorid = $USER->id;
+            $objSilaboFile->chr_file_name = '';
+            $returnValue = $objSilaboFile;
+        }
+        return $returnValue;
+    }
+
+    /**
+     * Método para obtener los archivos relacionado al silabo curso
+     * @global object $DB
+     * @return arrayObject
+     */
     public static function getFilesBySilaboId() {
         global $DB;
         return $DB->get_records('local_silabos_file');
+    }
+
+    /**
+     * Registra un archivo en estado desactivo y retorna el ID insert
+     * @global object $DB
+     * @param object $objFile
+     * @return int
+     */
+    public static function saveFile($objFile) {
+        global $DB;
+        return $DB->insert_record('local_silabos_file', $objFile);
+    }
+    
+    public static function updateFile($objFile) {
+        global $DB;
+        return $DB->update_record('local_silabos_file', $objFile);
+    }    
+    
+    public static function createSilaboFile($objBeanSilaboFile) {
+        global $DB;
+        return $DB->insert_record('local_silabos_file', $objBeanSilaboFile);
     }    
 
 }

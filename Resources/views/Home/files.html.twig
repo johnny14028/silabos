@@ -1,14 +1,23 @@
 <div class="container">
     <div class="row">
-        <h2 class="color-naranja">{{ home.getString('silabos:listFiles') }}</h2>
-        <p class="text-muted">{{course.chr_course_fullname}}</p>
+        <div class="col-md-10">
+            <h2 class="color-naranja">{{ home.getString('silabos:listFiles') }}</h2>
+            <p class="text-muted">{{course.chr_course_fullname}}</p>                
+        </div>
+        <div class="col-md-2">
+            <a class="btn btn-primary" href="{{home.getSilabosUriFormFiles(objSilabo.id, 0)}}" role="button">{{home.getString('silabos:newFile')}}</a> 
+        </div>
         <hr>
     </div>
     <div class="row">
         <div class="col">
             {# Inicio listado de cursos de silabos #}
-            {% include('partials/table.html.twig')  with {'items':files} %}
+            {% include('partials/table.html.twig')  with {'items':files, 'type':'files'} %}
             {# Fin Listado de cursos de silabos #}
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"><a class="btn btn-primary" href="{{home.getIndexUri()}}" role="button">Volver</a></div>
+        <div class="col-md-10"></div>
     </div>
 </div>

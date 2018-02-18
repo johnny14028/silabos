@@ -9,3 +9,11 @@ silabos_files:
     path:     /archivos/{silaboId}
     defaults: { _controller: silabos\Controller\HomeController::filesAction , silaboId: 0}
     methods:  [GET]    
+silabos_files_form:
+    path:     /formulario/archivos/{silaboId}/{fileId}
+    defaults: { _controller: silabos\Controller\HomeController::formfilesAction , silaboId: 0, fileId: 0}
+    methods:  [GET]
+silabos_files_save:
+    path:     /save
+    defaults: { _controller: silabos\Controller\HomeController::saveAction }
+    methods:  [POST]      

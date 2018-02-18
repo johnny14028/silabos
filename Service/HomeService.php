@@ -24,6 +24,29 @@ use stdClass;
 
 class HomeService extends Template {
 
+    private $valid_exts = ['pdf'];
+    private $max_size = 20000 * 1024;
+
+    public function __construct() {
+        $this->valid_exts = ['pdf'];
+    }
+
+    /**
+     * Método para listar un array de formatos o extensiones habilitadas
+     * @return array
+     */
+    public function getValidExts() {
+        return $this->valid_exts;
+    }
+
+    /**
+     * Método que retorna el tamaño máximo del archivo a subir
+     * @return int
+     */
+    public function getMaxSize() {
+        return $this->max_size;
+    }
+
     /**
      * Metodo para obtener la traducción de la variable $strLan
      * @param string $strLan
@@ -51,6 +74,28 @@ class HomeService extends Template {
     }
 
     /**
+     * Obtener la URI de la vista de formularios
+     * @param int $silaboId
+     * @param int $fileId
+     * @return string
+     */
+    public function getSilabosUriFormFiles($silaboId, $fileId) {
+        return $this->routes()->generate('silabos_files_form', ['silaboId' => $silaboId, 'fileId' => $fileId]);
+    }
+
+    /**
+     * Método para la URL del submit donde se guarda los uploads
+     * @return string
+     */
+    public function getSilabosFormSubmitUri() {
+        return $this->routes()->generate('silabos_files_save');
+    }
+    
+    public function getIndexUri(){
+        return $this->routes()->generate('index');
+    }
+
+    /**
      * Método para listar todos los archivo adjuntos a este registro de curso
      * @param int $silaboid
      * @return arrayObject
@@ -66,6 +111,55 @@ class HomeService extends Template {
      */
     public function getSilaboById($id) {
         return HomeModel::getSilaboById($id);
+    }
+
+    /**
+     * Método para cargar el objecto archivo o sílabo de un registro adjuntable
+     * @param int $id
+     * @return object
+     */
+    public function getFileSilaboById($id) {
+        return HomeModel::getFileSilaboById($id);
+    }
+
+    /**
+     * Método para la primera inserción de archivo en estado deshabilitado
+     * retornale Insert ID
+     * @global Object $USER
+     * @param int $silaboid
+     * @return int
+     */
+    public function savefile($silaboid) {
+        global $USER;
+        $objFile = new \stdClass();
+        $objFile->int_silaboid = $silaboid;
+        $objFile->is_active = 0;
+        $objFile->date_timecreated = time();
+        $objFile->int_creatorid = $USER->id;
+        return HomeModel::saveFile($objFile);
+    }
+
+    /**
+     * 
+     * @param array $resultSaveFile
+     * @param int $fileid
+     * @return int
+     */
+    public function updateFile($resultSaveFile, $fileid) {
+        $objFile = new \stdClass();
+        $objFile->id = $fileid;
+        //$objFile->is_active = 0;
+        $objFile->chr_file_name = $resultSaveFile['file'];
+        $objFile->int_fileid = $resultSaveFile['id'];
+        return HomeModel::updateFile($objFile);
+    }
+
+    public function updateSilaboFile($objBeanSilaboFile) {
+        HomeModel::updateFile($objBeanSilaboFile);
+    }
+
+    public function createSilaboFile($objBeanSilaboFile) {
+        return HomeModel::createSilaboFile($objBeanSilaboFile);
     }
 
 }

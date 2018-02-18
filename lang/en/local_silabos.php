@@ -11,6 +11,8 @@ $string['silabos:disabled'] = 'Deshabilitado';
 $string['silabos:noAplica'] = 'No aplica';
 $string['silabos:files'] = 'Archivos';
 $string['silabos:listFiles'] = 'Lista de archivos';
+$string['silabos:newFile'] = 'Agregar nuevo archivo';
+$string['silabos:editfiles'] = 'Editar';
 //Variables del datatable
 $string['local_silabos_datatable_first']      = 'Primero';
 $string['local_silabos_datatable_last']      = 'Último';
@@ -27,3 +29,5 @@ $string['local_silabos_datatable_search']      = 'Buscar:';
 $string['local_silabos_datatable_LoadingRecords']      = 'Cargando...';
 $string['local_silabos_datatable_SortAscending']      = ': Activar para ordenar la columna de manera ascendente';
 $string['local_silabos_datatable_SortDescending']      = ': Activar para ordenar la columna de manera descendente';
+//variables de validate
+$string['local_silabos_formvalidation_missing']      = 'Es necesario ingresar un valor';

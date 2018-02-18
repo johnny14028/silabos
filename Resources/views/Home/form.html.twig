@@ -1,0 +1,27 @@
+<form name="formFile" id="formFile" method="POST" action="{{home.getSilabosFormSubmitUri()}}" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="inputName">Nombre del sílabo</label>
+        <input type="text" class="form-control" id="inputName" name="inputName" aria-describedby="inputNameHelp" placeholder="Nombre del archivo" value="{{objFile.chr_name}}">
+        <small id="inputNameHelp" class="form-text text-muted">El nombre del archivo es el texto público</small>
+    </div>
+    <div class="form-group">
+        <label for="inputIsActive">Estado</label>
+        <select class="form-control" id="inputIsActive" name="inputIsActive">
+            {%if objFile.is_active%}
+                <option value="1" selected="selected">{{home.getString('silabos:enabled')}}</option>
+                <option value="0">{{home.getString('silabos:disabled')}}</option>                            
+            {%else%}
+                <option value="1">{{home.getString('silabos:enabled')}}</option>
+                <option value="0" selected="selected">{{home.getString('silabos:disabled')}}</option>                            
+            {%endif%}            
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="inputFile">Subir archivo sílabo</label>
+        <input type="file" class="form-control-file" id="inputFile" name="inputFile" accept="application/pdf">
+        <small id="inputNameHelp" class="form-text text-muted">Formato PDF</small>
+    </div>
+    <input type="hidden" id="id" name="id" value="{{objFile.id}}">
+    <input type="hidden" id="silaboid" name="silaboid" value="{{objSilabo.id}}">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>

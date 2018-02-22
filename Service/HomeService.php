@@ -124,6 +124,7 @@ class HomeService extends Template {
      * @return arrayObject
      */
     public function getFilesBySilaboId($silaboid) {
+        $returnValue = [];
         return HomeModel::getFilesBySilaboId($silaboid);
     }
 

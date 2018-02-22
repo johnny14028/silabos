@@ -108,6 +108,12 @@ class HomeController extends HomeService {
             $objBeanSilaboFile->chr_name = $post['inputName'];
             $this->updateSilaboFile($objBeanSilaboFile);
         } else {
+            //verificamos si es una habilitación
+            if($post['inputIsActive']){
+                //desactivamos todos los archivos con respecto al curso
+                //para garintizar que solo exista un sílabo activo por curso
+                $this->disableSilabosBySilaboId($post['silaboid']);
+            }            
             //crear un nuevo registro file
             $objBeanSilaboFile = new \stdClass();
             $objBeanSilaboFile->id = $post['id'];
@@ -150,7 +156,7 @@ class HomeController extends HomeService {
         }
 //        $status = $response['success'] ? 200 : 500; // Status code de la respuesta.
 //        return new JsonResponse($response, $status);
-        redirect($this->routes()->generate('silabos_files', ['silaboId' => $post['silaboid']]));
+        redirect($this->routes()->generate('silabos_files', ['silaboId' => $post['silaboid']]), get_string('changessaved'));
         die();
     }
 

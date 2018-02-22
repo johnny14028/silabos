@@ -1,6 +1,8 @@
 <?php
 
 function xmldb_local_silabos_upgrade($oldversion) {
+    global $DB;
+    $dbman = $DB->get_manager();
     if ($oldversion < 2018011201) {
 
         // Define field chr_name to be added to local_silabos_file.

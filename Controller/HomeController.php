@@ -239,6 +239,6 @@ class HomeController extends HomeService {
                 return new JsonResponse($response, $status);
                 break;
         }
-    }    
+    }
 
 }

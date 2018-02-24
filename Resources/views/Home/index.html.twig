@@ -4,11 +4,13 @@
         <p class="text-muted">{{home.getString('pluginname')}}</p>
         <hr>
     </div>
-    <div class="row">
-        <div class="col">
-            {# Inicio listado de cursos de silabos #}
-            {% include('partials/table.html.twig')  with {'items':courses, 'type':'course'} %}
-            {# Fin Listado de cursos de silabos #}
+    {% if home.is_admin() %}
+        <div class="row">
+            <div class="col">
+                {# Inicio listado de cursos de silabos #}
+                {% include('partials/table.html.twig')  with {'items':courses, 'type':'course'} %}
+                {# Fin Listado de cursos de silabos #}
+            </div>
         </div>
-    </div>
+    {%endif%}
 </div>

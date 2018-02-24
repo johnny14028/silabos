@@ -200,5 +200,13 @@ class HomeService extends Template {
     public function activeCourse($itemid, $activeid){
         HomeModel::activeCourse($itemid, $activeid);
     }
+    
+    public function is_admin(){
+        $returnValue = FALSE;
+        if(is_siteadmin()){
+            $returnValue = TRUE;
+        }
+        return $returnValue;
+    }    
 
 }

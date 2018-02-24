@@ -1,3 +1,4 @@
+<input type="hidden" name="url_ajax" id="url_ajax" value="{{home.getAjaxUri()}}">
 <table class="table" id="tableSilabosCourses">
     <thead>
         <tr>
@@ -29,7 +30,21 @@
                             {{item.chr_file_name}}
                         {%endif%}
                     </td>
-                    <td>{{item.is_active?home.getString('silabos:enabled'):home.getString('silabos:disabled')}}</td>
+                    <td>
+                        {%if type == 'course'%}
+                            <select name="select_{{item.id}}" onchange="activeCourse(this, {{item.id}});">
+                                {% if item.is_active %}
+                                    <option value="1" selected="selected">{{home.getString('silabos:enabled')}}</option>
+                                    <option value="0">{{home.getString('silabos:disabled')}}</option>
+                                {%else%}
+                                    <option value="1">{{home.getString('silabos:enabled')}}</option>
+                                    <option value="0" selected="selected">{{home.getString('silabos:disabled')}}</option>                                    
+                                {%endif%}
+                            </select>
+                        {%else%}
+                            {{item.is_active?home.getString('silabos:enabled'):home.getString('silabos:disabled')}}</td>
+                        {%endif%}
+
                     <td>{{item.date_timemodified >0?item.date_timemodified|date("d/m/Y"):home.getString('silabos:noAplica')}}</td>
                     <td>
                         {%if type == 'course'%}

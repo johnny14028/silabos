@@ -99,6 +99,13 @@ class HomeService extends Template {
     public function getIndexUri() {
         return $this->routes()->generate('index');
     }
+    /**
+     * Obtenemos la URL del ajax del plugin sílabo
+     * @return string
+     */
+    public function getAjaxUri() {
+        return $this->routes()->generate('ajax');
+    }
 
     /**
      * Obtenemos la URL del archivo sílabo
@@ -188,6 +195,10 @@ class HomeService extends Template {
     
     public function disableSilabosBySilaboId($silaboid){
         HomeModel::disableSilabos($silaboid);
+    }
+    
+    public function activeCourse($itemid, $activeid){
+        HomeModel::activeCourse($itemid, $activeid);
     }
 
 }

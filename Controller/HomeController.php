@@ -225,5 +225,20 @@ class HomeController extends HomeService {
         $sourcefield->source = $source;
         return serialize($sourcefield);
     }
+    
+    public function ajaxAction(Request $request) {
+        global $USER;
+        $subject = $request->request->get('subject');
+        switch ($subject) {
+            case 'activeCourse':
+                $activeid = $request->request->get('active');
+                $itemid = $request->request->get('itemid');
+                $this->activeCourse($itemid, $activeid);
+                $response['success'] = true;
+                $status = $response['success'] ? 200 : 500; // Status code de la respuesta.
+                return new JsonResponse($response, $status);
+                break;
+        }
+    }    
 
 }

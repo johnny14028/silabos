@@ -1,5 +1,5 @@
 ajax:
-    path:     /ajax/{subject}
+    path:     /ajax
     defaults: { _controller: silabos\Controller\HomeController::ajaxAction }
     methods:  [POST]
 index:

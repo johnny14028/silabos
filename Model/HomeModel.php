@@ -116,5 +116,13 @@ class HomeModel {
         $sql_update = "UPDATE {local_silabos_file} SET is_active=? WHERE int_silaboid = ?";
         $DB->execute($sql_update,[0,$silaboid]);
     }
+    
+    public static function activeCourse($itemid, $activeid){
+        global $DB;
+        $objSilaboCourse = new \stdClass();
+        $objSilaboCourse->is_active = $activeid;
+        $objSilaboCourse->id = $itemid;
+        $DB->update_record('local_silabos', $objSilaboCourse);
+    }
 
 }

@@ -201,6 +201,10 @@ class HomeService extends Template {
         HomeModel::activeCourse($itemid, $activeid);
     }
     
+    public function deleteFile($itemid){
+        HomeModel::deleteFile($itemid);
+    }
+    
     public function is_admin(){
         $returnValue = FALSE;
         if(is_siteadmin()){

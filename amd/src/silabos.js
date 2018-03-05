@@ -56,3 +56,27 @@ function loadFormFiles() {
         });
     });
 }
+
+function activeCourse(eSelect, itemid) {
+    require(['jquery'], function ($) {
+        var url_ajax = $("#url_ajax").val();
+        $.post(url_ajax, {subject: "activeCourse", active: $(eSelect).val(), itemid: itemid}, function (response) {
+            if (response.success) {
+            }
+        });
+    });
+}
+function deleteFile(itemid) {
+    require(['jquery'], function ($) {
+        var r = confirm(local_silabos.local_silabos_comfirm_action);
+        if (r == true) {
+            var url_ajax = $("#url_ajax").val();
+            $.post(url_ajax, {subject: "deleteFile", itemid: itemid}, function (response) {
+                if (response.success) {
+                    //redireccionamos a la página inicial
+                    window.location.href = response.url
+                }
+            });
+        }
+    });
+}

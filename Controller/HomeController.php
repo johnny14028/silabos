@@ -238,6 +238,16 @@ class HomeController extends HomeService {
                 $status = $response['success'] ? 200 : 500; // Status code de la respuesta.
                 return new JsonResponse($response, $status);
                 break;
+            case 'deleteFile':
+                $itemid = $request->request->get('itemid');
+                $objFile = $this->getFileSilaboById($itemid);
+                $this->deleteFile($itemid);
+                $url = $this->routes()->generate('silabos_files', ['silaboId' => $objFile->int_silaboid]);
+                $response['success'] = true;
+                $response['url'] = $url;
+                $status = $response['success'] ? 200 : 500; // Status code de la respuesta.
+                return new JsonResponse($response, $status);                
+                break;
         }
     }
 

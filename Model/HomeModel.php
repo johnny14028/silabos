@@ -82,7 +82,7 @@ class HomeModel {
      */
     public static function getFilesBySilaboId() {
         global $DB;
-        return $DB->get_records('local_silabos_file');
+        return $DB->get_records('local_silabos_file',['is_deleted'=>0]);
     }
 
     /**
@@ -123,6 +123,14 @@ class HomeModel {
         $objSilaboCourse->is_active = $activeid;
         $objSilaboCourse->id = $itemid;
         $DB->update_record('local_silabos', $objSilaboCourse);
+    }
+    
+    public static function deleteFile($itemid){
+        global $DB;
+        $objSilaboCourse = new \stdClass();
+        $objSilaboCourse->is_deleted = 1;
+        $objSilaboCourse->id = $itemid;
+        $DB->update_record('local_silabos_file', $objSilaboCourse);
     }
 
 }

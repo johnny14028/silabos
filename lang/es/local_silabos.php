@@ -16,6 +16,7 @@ $string['silabos:editfiles'] = 'Editar';
 $string['silabos:back'] = 'Volver';
 $string['silabos:submit'] = 'Guardar';
 $string['silabos:view'] = 'Ver';
+$string['silabos:delete'] = 'Eliminar';
 //Variables del datatable
 $string['local_silabos_datatable_first']      = 'Primero';
 $string['local_silabos_datatable_last']      = 'Último';
@@ -34,3 +35,4 @@ $string['local_silabos_datatable_SortAscending']      = ': Activar para ordenar 
 $string['local_silabos_datatable_SortDescending']      = ': Activar para ordenar la columna de manera descendente';
 //variables de validate
 $string['local_silabos_formvalidation_missing']      = 'Es necesario ingresar un valor';
+$string['local_silabos_comfirm_action']      = '¿Realmente deseas realizar esta acción?';
